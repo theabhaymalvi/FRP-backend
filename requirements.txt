@@ -3,7 +3,6 @@ djangorestframework
 requests
 django-cors-headers
 dj-database-url
-os
 psycopg2
 PyJWT
 gunicorn

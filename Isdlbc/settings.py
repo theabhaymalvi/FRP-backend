@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
+import os
+import dj-database-url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,16 +80,21 @@ WSGI_APPLICATION = 'Isdlbc.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'recruitDB',
-        'USER':'postgres',
-        'PASSWORD':'aryang911',
-        'HOST':'127.0.0.1',
-        'PORT':'5432',
-    }
+	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'recruitDB',
+#         'USER':'postgres',
+#         'PASSWORD':'aryang911',
+#         'HOST':'127.0.0.1',
+#         'PORT':'5432',
+#     }
+# }
 
 
 # Password validation
@@ -134,4 +140,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL=True
 CORS_ALLOW_CREDENTIALS=True
 AUTH_USER_MODEL = 'restapi.User'
-django_heroku.settings(locals())#ananfnafsns
+# django_heroku.settings(locals())#ananfnafsns
